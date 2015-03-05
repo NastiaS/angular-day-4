@@ -6,3 +6,4 @@
 
 ## Data Structures
 * Part 1: https://www.youtube.com/watch?v=unfzLDyuo1I
+* Part 2: https://www.youtube.com/watch?v=UmXRums5ZzY (hash tables were cut off — sorry!)
