@@ -13,3 +13,4 @@
 
 ## Sorting
 * Lecture: http://youtu.be/WqGkZhNNGYk
+* Review: https://www.youtube.com/watch?v=4xhGmxVpZvI
