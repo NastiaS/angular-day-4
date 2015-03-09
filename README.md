@@ -18,3 +18,4 @@
 
 ## Game of Life
 * Lecture: http://youtu.be/XY4vn8ZRZgE
+* Review (Part I): http://youtu.be/8R6wsZeu1k0
