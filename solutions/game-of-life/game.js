@@ -33,6 +33,14 @@ var gameOfLife = {
       and pass into func, the cell and the cell's x & y
       coordinates. For example: iteratorFunc(cell, x, y)
     */
+
+    var cells = document.getElementsByTagName('td');
+    // Array prototype call solution
+    Array.prototype.forEach.call(cells, iteratorFunc);
+    // // for loop solution
+    // for (var i = 0; i < cells.length; i++) {
+    //   iteratorFunc(cells[i]);
+    // }
   },
   
   setupBoardEvents: function() {
@@ -62,9 +70,19 @@ var gameOfLife = {
         this.setAttribute('data-status', 'dead');
       }
     };
+
+    this.forEachCell(function (cell) {
+      // var cell00 = document.getElementById('0-0');
+      cell.onclick = onCellClick;
+    });
+
+    this.enableAutoPlay();
+
+    var self = this;
+    document.getElementById('step_btn').onclick = function () {
+      self.step();
+    };
     
-    var cell00 = document.getElementById('0-0');
-    cell00.onclick = onCellClick;
   },
 
   step: function () {
@@ -77,13 +95,104 @@ var gameOfLife = {
     // 1. Count alive neighbors for all cells
     // 2. Set the next state of all cells based on their alive neighbors
     
+    // // DOESNT WORK - UPDATES TOO EARLY
+    // this.forEachCell(function (cell) {
+    //   var numLiveNeighbors = countLiveNeighbors(cell);
+    //   if (status(cell) == 'dead') {
+    //     if (numLiveNeighbors === 3) {
+    //       toggle(cell);
+    //     }
+    //   } else {
+    //     if (numLiveNeighbors > 3 || numLiveNeighbors < 2) {
+    //       toggle(cell);
+    //     }
+    //   }
+    // });
+
+    // double rainbow approach
+    // make a first pass to store the number of live neighbors
+    // next pass update them
+
+    // doppleganger
+    // make a clone of the board to read from
+    // don't update the clone
+
+    // lazy
+    // do it later
+    var toToggle = [];
+
+    this.forEachCell(function (cell) {
+      var numLiveNeighbors = countLiveNeighbors(cell);
+      if (status(cell) == 'dead') {
+        if (numLiveNeighbors === 3) {
+          toToggle.push(cell);
+        }
+      } else {
+        if (numLiveNeighbors > 3 || numLiveNeighbors < 2) {
+          toToggle.push(cell);
+        }
+      }
+    });
+    toToggle.forEach(function (cell) {
+      toggle(cell);
+    });
   },
 
   enableAutoPlay: function () {
     // Start Auto-Play by running the 'step' function
     // automatically repeatedly every fixed time interval
-    
+    var playButton = document.getElementById('play_btn');
+
+    var self = this;
+    playButton.onclick = function () {
+      self.step();
+    };
   }
 };
+
+function status (cell) {
+  return cell.getAttribute('data-status');
+}
+
+function getNeighbors (cell) {
+  var neighbors = [];
+  var pos = cell.id.split('-').map(Number);
+  for (var xOffset = -1; xOffset < 2; xOffset++) {
+    for (var yOffset = -1; yOffset < 2; yOffset++) {
+      var x = pos[0] + xOffset,
+          y = pos[1] + yOffset;
+      if (xOffset == 0 && yOffset == 0) {
+        continue;
+      }
+      var neighbor = document.getElementById(x + '-' + y);
+      if (neighbor) {
+        neighbors.push(neighbor);
+      }
+    }
+  }
+  return neighbors;
+}
+
+function countLiveNeighbors (cell) {
+  return getNeighbors(cell).reduce(function (sum, neighbor) {
+    var toAdd;
+    if (status(neighbor) == 'dead') {
+      toAdd = 0;
+    } else {
+      toAdd = 1;
+    }
+    return sum + toAdd;
+  }, 0);
+}
+
+function toggle (cell) {
+  if (cell.getAttribute('data-status') == 'dead') {
+    cell.className = "alive";
+    cell.setAttribute('data-status', 'alive');
+  } else {
+    cell.className = "dead";
+    cell.setAttribute('data-status', 'dead');
+  }
+}
 
   gameOfLife.createAndShowBoard();
