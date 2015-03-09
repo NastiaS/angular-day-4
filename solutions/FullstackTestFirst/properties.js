@@ -12,11 +12,8 @@ function setPropertiesOnArrayObj(arr){
 	arr.hello = function(){
 		return "Hello!";
 	}
-
 	arr["full"] = "stack";
-
 	arr[0] = 5;
-
 	arr.twoTimes = function(num){
 		return num * 2;
 	}
@@ -26,11 +23,9 @@ function setPropertiesOnArrayObj(arr){
 
 function setPropertiesOnFunctionObj(func){
 	func.year = 2015;
-
 	func.divideByTwo = function(num){
 		return num / 2
 	}
-
 	func.prototype.helloWorld = function(){
 		return "Hello World";
 	}
