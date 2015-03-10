@@ -86,7 +86,55 @@ GameOfLife.prototype.setupBoardEvents = function() {
   
   document.getElementById('reset_btn').onclick = this.resetRandom.bind(this);
 
+  var reader = new FileReader();
+  var input = document.getElementById('shape-load')
+  input.onchange = function () {
+    // trigger the reader to start reading the new file
+    reader.readAsText(input.files[0], 'utf8');
+  };
+  var self = this;
+  reader.onload = function () {
+    // once the reader is finished, parse the file
+    // and load the shape onto the board
+    self.clear();
+    // get an array of lines, and exclude the ones that start with !
+    var lines = reader.result.split('\n').filter(function (line) {
+      return line[0] != '!';
+    });
+    var i = lines.length;
+    while (i--) {
+      // also remove any blank lines at the end
+      if (!lines[i].length) lines.pop();
+      else break;
+    }
+    // get the maxlength of any line
+    var shapeWidth = max(lines.map(function (line) {
+      return line.length;
+    }));
+    var shapeHeight = lines.length;
+    // offsets will help us center the loaded shape
+    var xOffset = Math.floor((self.width - shapeWidth) / 2),
+        yOffset = Math.floor((self.height - shapeHeight) / 2);
+    lines.forEach(function (line, lineIdx) {
+      for (var charIdx = 0, x, y; charIdx < line.length; charIdx++) {
+        // adjust x for centering
+        x = charIdx + xOffset;
+        // adjust y for centering
+        y = lineIdx + yOffset;
+        var cell = document.getElementById(x + '-' + y);
+        // a . in the file indicates a dead cell
+        var isDead = line[charIdx] == '.';
+        status(cell, isDead ? 'dead' : 'alive');
+      }
+    });
+  };
 };
+
+function max (arr) {
+  return arr.reduce(function (m, elem) {
+    return m > elem ? m : elem;
+  });
+}
 
 GameOfLife.prototype.step = function () {
   // Here is where you want to loop through all the cells
@@ -239,5 +287,5 @@ function toggle (cell) {
   }
 }
 
-var gameOfLife = new GameOfLife(150, 150);
+var gameOfLife = new GameOfLife(60, 60);
 gameOfLife.createAndShowBoard();
