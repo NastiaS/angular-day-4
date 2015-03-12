@@ -20,3 +20,9 @@
 * Lecture: http://youtu.be/XY4vn8ZRZgE
 * Review (Part I): http://youtu.be/8R6wsZeu1k0
 * Review (Part II): http://youtu.be/wyxSp7_PFPM
+
+## File Watcher
+* Review: https://www.dropbox.com/s/px0fkm4b65qmlqh/File%20Watcher%20Review.mp4?dl=0
+
+## Twitter.js
+* Review: https://www.dropbox.com/s/ffir0ya1zxro4km/Twitterjs%20Review.mp4?dl=0
