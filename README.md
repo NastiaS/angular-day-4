@@ -26,3 +26,6 @@
 
 ## Twitter.js
 * Review: https://www.dropbox.com/s/ffir0ya1zxro4km/Twitterjs%20Review.mp4?dl=0
+
+## SQL
+* Review: https://www.youtube.com/watch?v=mHOxOkGphlA
