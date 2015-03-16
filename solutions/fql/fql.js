@@ -13,6 +13,7 @@ function merge (obj1, obj2) {
 function FQL (data) {
 	this.original = data;
 	this.data = data;
+	this.indexTables = {};
 };
 
 FQL.prototype.exec = function () {
@@ -32,16 +33,28 @@ FQL.prototype.limit = function (n) {
 
 FQL.prototype.where = function (conditions) {
 	// filter out data based on conditions
-	this.data = this.data.filter(function (row) {
-		return Object.keys(conditions).every(function (column) {
-			var cond = conditions[column];
-			if (typeof cond === 'function') {
-				return cond(row[column]);
-			} else {
-				return row[column] == cond;
-			}
-		});
-	});
+	// indexing
+	var self = this;
+	function whereOne (data, col, cond) {
+		if (self.getIndicesOf(col, cond)) {
+			// console.log('indices are being used')
+			var indices = self.getIndicesOf(col, cond);
+			return indices.map(function (idx) {
+				return self.original[idx];
+			});
+		} else {
+			return data.filter(function (row) {
+				if (typeof cond === 'function') {
+					return cond(row[col]);
+				} else {
+					return row[col] == cond;
+				}
+			});
+		}
+	}
+	this.data = Object.keys(conditions).reduce(function (data, col) {
+		return whereOne(data, col, conditions[col]);
+	}, this.data);
 	return this;
 };
 
@@ -81,18 +94,46 @@ FQL.prototype.left_join = function (foreignFql, rowMatcher) {
 	// test the rowMatcher against each pair of self rows
 	// and foreignFql rows
 	// upon a match, merge the rows
-	var result = [];
-	this.data.forEach(function (row) {
-		foreignFql.data.forEach(function (foreignRow) {
+	// // ---- stateful approach
+	// var result = [];
+	// this.data.forEach(function (row) {
+	// 	foreignFql.data.forEach(function (foreignRow) {
+	// 		if (rowMatcher(row, foreignRow)) {
+	// 			result.push(merge(row, foreignRow));
+	// 		}
+	// 	});
+	// });
+	// this.data = result;
+	// --- functional approach
+	this.data = this.data.reduce(function (outerResult, row) {
+		return foreignFql.data.reduce(function (innerResult, foreignRow) {
 			if (rowMatcher(row, foreignRow)) {
-				result.push(merge(row, foreignRow));
+				innerResult.push(merge(row, foreignRow));
 			}
-		});
-	});
-	this.data = result;
+			return innerResult;
+		}, outerResult);
+	}, []);
 	return this;
 };
 
-FQL.prototype.getIndicesOf = function (column, val) {};
+FQL.prototype.getIndicesOf = function (column, val) {
+	// return the array of indices in the column's
+	// index table
+	if (this.indexTables[column]) {
+		return this.indexTables[column][val];
+	}
+};
 
-FQL.prototype.addIndex = function (column) {};
+FQL.prototype.addIndex = function (column) {
+	// construct a reverse lookup table for a 
+	// given column
+	var idxTable = this.indexTables[column] = {};
+	this.original.forEach(function (row, idx) {
+		var val = row[column];
+		if (!idxTable[val]) {
+			idxTable[val] = [idx];
+		} else {
+			idxTable[val].push(idx);
+		}
+	});
+};
