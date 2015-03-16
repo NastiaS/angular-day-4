@@ -32,3 +32,4 @@
 
 ## FQL
 * Intro: https://youtu.be/uBbrmsejvps
+* Review: http://youtu.be/TQOsBWwSp64
