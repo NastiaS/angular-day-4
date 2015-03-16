@@ -1,5 +1,5 @@
 function merge (obj1, obj2) {
-	// add key value pairs from obj2 into obj1
+	// add key value pairs from obj1 and obj2 into merged
 	var merged = {};
 	for (var key in obj1) {
 		merged[key] = obj1[key];
@@ -17,7 +17,10 @@ function FQL (data) {
 };
 
 FQL.prototype.exec = function () {
-	return this.data;
+	var result = this.data;
+	// reset data for next query
+	this.data = this.original;
+	return result;
 };
 
 FQL.prototype.count = function () {
@@ -33,17 +36,19 @@ FQL.prototype.limit = function (n) {
 
 FQL.prototype.where = function (conditions) {
 	// filter out data based on conditions
-	// indexing
 	var self = this;
 	function whereOne (data, col, cond) {
 		if (self.getIndicesOf(col, cond)) {
-			// console.log('indices are being used')
+			// index lookup
 			var indices = self.getIndicesOf(col, cond);
 			return indices.map(function (idx) {
+				// each index return a resulting
+				// data element
 				return self.original[idx];
 			});
 		} else {
 			return data.filter(function (row) {
+				// normal where lookup
 				if (typeof cond === 'function') {
 					return cond(row[col]);
 				} else {
@@ -53,7 +58,10 @@ FQL.prototype.where = function (conditions) {
 		}
 	}
 	this.data = Object.keys(conditions).reduce(function (data, col) {
-		return whereOne(data, col, conditions[col]);
+		// recursively narrow down data set
+		// using whereOne for each condition key/val pair
+		var cond = conditions[col];
+		return whereOne(data, col, cond);
 	}, this.data);
 	return this;
 };
@@ -77,7 +85,7 @@ function defaultCompare (valA, valB) {
 	if (typeof valA === 'number' && typeof valB === 'number') {
 		return valA - valB;
 	} else {
-		// do it later...
+		return valA < valB ? 1 : -1;
 	}
 }
 
