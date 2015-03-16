@@ -1,9 +1,21 @@
-// Place your code here:
+function merge (obj1, obj2) {}
 
-// Adds properties of obj2 into obj1
-function merge(obj1, obj2) {
-}
+function FQL (data) {};
 
+FQL.prototype.exec = function () {};
 
-var FQL = function(data) {
-};
+FQL.prototype.count = function () {};
+
+FQL.prototype.limit = function (n) {};
+
+FQL.prototype.where = function (conditions) {};
+
+FQL.prototype.select = function (columns) {};
+
+FQL.prototype.order = function (column) {};
+
+FQL.prototype.left_join = function (foreignFql, rowMatcher) {};
+
+FQL.prototype.getIndicesOf = function (column, val) {};
+
+FQL.prototype.addIndex = function (column) {};
