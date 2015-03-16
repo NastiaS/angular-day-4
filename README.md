@@ -29,3 +29,6 @@
 
 ## SQL
 * Review: https://www.youtube.com/watch?v=mHOxOkGphlA
+
+## FQL
+* Intro: https://youtu.be/uBbrmsejvps
