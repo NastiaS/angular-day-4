@@ -36,4 +36,5 @@
 
 ## Twitter.sql
 * Intro to ORMs: http://youtu.be/JX3hfVvbeMI
-* Review: http://youtu.be/aygION0Dyn4
+* Review (Part I): https://youtu.be/Wnuf6MBOH3c
+* Review (Part II): http://youtu.be/aygION0Dyn4
