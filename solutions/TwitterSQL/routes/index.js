@@ -49,9 +49,9 @@ router.get('/users/:name', function (req, res) {
             }
         })
         .complete(function (err, tweets) {
-            console.log('tweets', tweets.map(function (tweet) {
-                return tweet.get({plain: true});
-            }));
+            // console.log('tweets', tweets.map(function (tweet) {
+            //     return tweet.get({plain: true});
+            // }));
             res.render('index', {
                 title: 'Twitter.js - Posts by ' + name,
                 tweets: tweets,
@@ -67,7 +67,7 @@ router.get('/users/:name/tweets/:id', function (req, res) {
     Tweet
     .find({include: [User]}, id)
     .complete(function (err, tweet) {
-        console.log('tweet', tweet.get({plain: true}));
+        // console.log('tweet', tweet.get({plain: true}));
         res.render('index', {
             title: 'Twitter.js - Tweet by ' + name,
             tweets: [tweet],
