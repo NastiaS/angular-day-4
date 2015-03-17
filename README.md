@@ -33,3 +33,6 @@
 ## FQL
 * Intro: https://youtu.be/uBbrmsejvps
 * Review: http://youtu.be/TQOsBWwSp64
+
+## Twitter.sql
+* Intro to ORMs: http://youtu.be/JX3hfVvbeMI
