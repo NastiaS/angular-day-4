@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="page-header">
-    <h1>Welcome to Twitter.js, Nimit!</h1>
+    <h1>"Welcome to Twitter.sql, Nimit!"</h1>
 </div>
 <div class="row">
     <div class="col-md-3">
@@ -11,9 +11,9 @@
         <b>Your Name</b><br>
         100 followers
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9" id = "tweetList">
 
-        <h1>{{ title }}</h1>
+        <h1>{{ tweets.title }}</h1>
 
         {% if showForm %}
             <form action="/submit" method="POST">
@@ -31,16 +31,23 @@
             <!-- display tweets here -->
             {% for tweet in tweets %}
             <li>
+                <img src={{tweet.get('pictureUrl')}}><br>
                 <h2>
-                    <a href="/users/{{ tweet.name }}">
-                        {{ tweet.name }}
+                    <a href="/users/:{{ tweet.get('name') }}">
+                        {{ tweet.get('name') }}
                     </a>
                 </h2>
 
                 <p>
-                    <a href="/users/{{ tweet.name }}/tweets/{{ tweet.id }}">
-                        {{tweet.text}}
-                    </a>
+                    
+                        {% for oneTweet in tweet.Tweets %}
+                        <a href="/users/:{{ tweet.get('name') }}/tweets/:{{ oneTweet.get('id')}}">
+                            <p>
+                                {{oneTweet.get('tweet')}}
+                            </p>
+                        </a>
+                        {% endfor %}
+                    
                 </p>
             </li>
             {% endfor %}

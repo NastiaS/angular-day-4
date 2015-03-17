@@ -89,7 +89,7 @@
     socket.on('new_tweet', function (tweet) {
         console.log(tweet);
         alert('Refreshing... check the console...');
-        // some logic to add the new tweet to the DOM…
+        document.getElementById("tweetList").appendChild(tweet);
     });
 </script>
 </body>

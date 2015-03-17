@@ -20,6 +20,6 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var router = require('./routes');
+var router = require('./routes')(io);
 app.use('/', router);
 
