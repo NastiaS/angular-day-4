@@ -39,3 +39,6 @@
 * Review (Part I): https://youtu.be/Wnuf6MBOH3c
 * Review (Part II): http://youtu.be/aygION0Dyn4
 * Data Flow: http://youtu.be/MxSDEFlhtDQ
+
+## Wikistack
+* Lecture: https://www.youtube.com/watch?v=SuDdCKKc0a0
