@@ -42,3 +42,7 @@
 
 ## Wikistack
 * Lecture: https://www.youtube.com/watch?v=SuDdCKKc0a0
+* Review: https://www.youtube.com/watch?v=wLHzJrJASN0
+
+## Testing
+* Lecture: https://www.youtube.com/watch?v=H2d_c8FYWvQ
