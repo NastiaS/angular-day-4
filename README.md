@@ -46,3 +46,7 @@
 
 ## Testing
 * Lecture: https://www.youtube.com/watch?v=H2d_c8FYWvQ
+* Review: https://www.youtube.com/watch?v=koaqf3mdqSM
+
+## Assessment 02
+* Review: https://www.youtube.com/watch?v=oPG2xvilVjU
