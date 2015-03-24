@@ -1,0 +1,127 @@
+@import "normalize";
+@import "modern-business";
+
+* {
+  box-sizing: border-box;
+}
+
+@mixin clearfix() {
+  &:after {
+    content: " ";
+    display: table;
+    clear:both;
+  }
+}
+
+$nav-height: 50px;
+nav.navbar {
+  background: #eee;  // light gray
+  height: $nav-height;
+
+  a {
+    color: #777;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.navbar.navbar-inverse {
+  background: #333; //dark gray
+  a {
+    color: #ccc;
+  }
+}
+
+.navbar-fixed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+}
+
+.navbar-header {
+  float:left;
+  margin-left: 10px;
+  line-height: $nav-height;
+}
+
+ul.nav {
+  margin-top: 0;
+  margin-bottom: 0;
+
+  li {
+    display: block;
+    line-height: $nav-height;
+    padding: 0 10px;
+  }
+}
+
+ul.nav.navbar-right {
+  margin-right: 10px;
+  li {
+    float:right;
+  }
+
+  li:hover {
+    background-color: #000;
+  }
+
+}
+.img-responsive {
+  width: 100%;
+}
+
+.section.lead{
+  padding-top:0;
+}
+
+.row {
+  @include clearfix();
+}
+
+.col-lg-12 { 
+  float: left;
+  width: 100%;
+}
+
+.col-lg-4 {
+    float: left;
+    width: 33.333%;
+    padding: 15px;
+}
+
+.col-lg-6 {
+    float: left;
+    width: 50%;
+    padding: 30px;
+}
+
+.col-sm-8 {
+    float: left;
+    width: 66.6666%;
+    padding: 30px;    
+}
+
+.col-sm-4 {
+    float: left;
+    width: 33.3333%;
+    padding: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
