@@ -53,3 +53,4 @@
 
 ## TripPlanner Static
 * HTML5 / GMaps / Express lecture: https://www.youtube.com/watch?v=vDo3a7G5JCk#t=123
+* Review: https://www.youtube.com/watch?v=zhl1VsVz_1I
