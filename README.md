@@ -57,3 +57,6 @@
 
 ## Regex
 * Lecture: https://www.youtube.com/watch?v=uG50c2E5ctA
+
+## Promises
+* Lecture: https://www.youtube.com/watch?v=tWkhSw6csD8
