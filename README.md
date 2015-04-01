@@ -60,3 +60,4 @@
 
 ## Promises
 * Lecture: https://www.youtube.com/watch?v=tWkhSw6csD8
+* Review: https://www.youtube.com/watch?v=BCB3BOR-JRs
