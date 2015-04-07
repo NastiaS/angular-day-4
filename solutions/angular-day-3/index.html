@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Flash Cards</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <script src="js/lib/angular.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/controllers/MainController.js"></script>
+        <script src="js/controllers/StatsController.js"></script>
+        <script src="js/factories/FlashCardsFactory.js"></script>
+        <script src="js/factories/ScoreFactory.js"></script>
+        <script src="js/directives/loader/loader.js"></script>
+        <script src="js/directives/flash-card/flash-card.js"></script>
+        <script src="js/directives/border-on-hover.js"></script>
+        <script src="js/filters/cheat-filter.js"></script>
+    </head>
+
+    <body ng-app="FlashCards">
+
+        <div ng-include="'templates/stats.html'">
+        </div>
+
+        <div ng-controller="MainController">
+
+            <loader ng-show="cardsLoading"></loader>
+
+            <div ng-hide="cardsLoading">
+
+                <button
+                        class="category-button"
+                        ng-click="getAllCards()"
+                        ng-class="{ active: chosenCategory === 'All' }">
+                    All Categories
+                </button>
+
+                <button
+                        class="category-button"
+                        ng-repeat="category in categories"
+                        ng-click="getCategoryCards(category)"
+                        ng-class="{ active: chosenCategory === category }">
+                    {{ category }}
+                </button>
+
+                <flash-card card="entry" ng-repeat="entry in flashCards"></flash-card>
+
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
