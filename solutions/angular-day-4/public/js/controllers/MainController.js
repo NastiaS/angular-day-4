@@ -1,28 +1,21 @@
-app.controller('MainController', function ($scope, FlashCardsFactory, FlashCardsUpdate, $rootScope, $state, $stateParams) {
+app.controller('MainController', function ($scope, FlashCardsFactory, $rootScope, $state) {
 
-    $rootScope.$on('categoryFiltered', function (event) {
-        $scope.filtered = false;
-    });
-
-    //FlashCardsUpdate.onUpdate(function () {
-    //    $scope.getAllCards();
-    //});
-
+    
     $scope.flashCards = [];
-
     $scope.cardsLoading = false;
-
     $scope.categories = [
         'MongoDB',
         'Express',
         'Angular',
         'Node'
     ];
-
     $scope.chosenCategory = 'All';
-
     $scope.filtered = true;
 
+
+    $rootScope.$on('categoryFiltered', function (event) {
+        $scope.filtered = false;
+    });
 
     $scope.getAllCards = function () {
         $scope.chosenCategory = 'All';
@@ -37,13 +30,7 @@ app.controller('MainController', function ($scope, FlashCardsFactory, FlashCards
     };
 
     $scope.getCategoryCards = function (category) {
-
         $state.go('flashCards.category', {category: category}); 
-        $scope.chosenCategory = category;
-        // FlashCardsFactory.getFlashCards(category).then(function (cards) {
-        //     $scope.cardsLoading = false;
-        //     $scope.flashCards = cards;
-        // });
     };
 
     $scope.getAllCards();

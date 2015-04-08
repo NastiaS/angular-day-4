@@ -26,9 +26,7 @@ app.factory('FlashCardsFactory', function ($http) {
 
         },
 
-        flashCards: [],
-
-        filteredByCategory: true
+        flashCards: []
 
     };
 

@@ -1,14 +1,18 @@
-app.controller('NewCardController', function (FlashCardsFactory, $scope, FlashCardsUpdate, $rootScope) {
+app.controller('NewCardController', function (FlashCardsFactory, $scope, $rootScope) {
 
-    $scope.newCard = {
-        question: null,
-        category: null,
-        answers: [
-            { text: null, correct: false },
-            { text: null, correct: false },
-            { text: null, correct: false }
-        ]
+    $scope.reset = function(){
+        $scope.newCard = {
+            question: null,
+            category: null,
+            answers: [
+                { text: null, correct: false },
+                { text: null, correct: false },
+                { text: null, correct: false }
+            ]
+        };
     };
+    
+    $scope.reset();
 
     $scope.submitting = false;
 
@@ -18,21 +22,11 @@ app.controller('NewCardController', function (FlashCardsFactory, $scope, FlashCa
 
         FlashCardsFactory.addNewFlashCard(card).then(function (newCard) {
 
-            //FlashCardsUpdate.flashCardsUpdated();
-
             $rootScope.$broadcast('flashCardsUpdated', newCard);
 
             $scope.submitting = false;
 
-            $scope.newCard = {
-                question: null,
-                category: null,
-                answers: [
-                    { text: null, correct: false },
-                    { text: null, correct: false },
-                    { text: null, correct: false }
-                ]
-            };
+            $scope.reset();
         });
 
     };
