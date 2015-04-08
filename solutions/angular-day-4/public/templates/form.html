@@ -1,0 +1,36 @@
+<div ng-controller="NewCardController">
+
+    <loader ng-show="submitting"></loader>
+
+    <form ng-if="!submitting" name="newCardForm" ng-submit="newCardForm.$valid && submitCard(newCard)" novalidate>
+
+        <!--<pre>{{ newCardForm | json }}</pre>-->
+
+        <error ng-show="newCardForm.question.$error.required && newCardForm.$submitted">Question is required.</error>
+        <error ng-show="newCardForm.question.$error.minlength">Question must be at least 15 characters.</error>
+        <label>Question:</label>
+        <input name="question" required ng-minlength="15" type="text" ng-model="newCard.question"/><br/>
+
+        <error ng-show="newCardForm.category.$error.required">Category is required.</error>
+        <label>Category:</label>
+        <select name="category" required ng-model="newCard.category">
+            <option>MongoDB</option>
+            <option>Express</option>
+            <option>Angular</option>
+            <option>Node</option>
+        </select>
+
+        <br/><label>Answers:</label>
+
+        <input required ng-maxlength="40" type="text" ng-model="newCard.answers[0].text"/>
+        <input type="checkbox" ng-model="newCard.answers[0].correct"/>
+        <input required ng-maxlength="40" type="text" ng-model="newCard.answers[1].text"/>
+        <input type="checkbox" ng-model="newCard.answers[1].correct"/>
+        <input required ng-maxlength="40" type="text" ng-model="newCard.answers[2].text"/>
+        <input type="checkbox" ng-model="newCard.answers[2].correct"/>
+
+        <button>Submit New Card</button>
+
+    </form>
+
+</div>
