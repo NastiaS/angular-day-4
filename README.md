@@ -36,3 +36,28 @@
 
 ## Twitter.sql
 * Intro to ORMs: http://youtu.be/JX3hfVvbeMI
+* Review (Part I): https://youtu.be/Wnuf6MBOH3c
+* Review (Part II): http://youtu.be/aygION0Dyn4
+* Data Flow: http://youtu.be/MxSDEFlhtDQ
+
+## Wikistack
+* Lecture: https://www.youtube.com/watch?v=SuDdCKKc0a0
+* Review: https://www.youtube.com/watch?v=wLHzJrJASN0
+
+## Testing
+* Lecture: https://www.youtube.com/watch?v=H2d_c8FYWvQ
+* Review: https://www.youtube.com/watch?v=koaqf3mdqSM
+
+## Assessment 02
+* Review: https://www.youtube.com/watch?v=oPG2xvilVjU
+
+## TripPlanner Static
+* HTML5 / GMaps / Express lecture: https://www.youtube.com/watch?v=vDo3a7G5JCk#t=123
+* Review: https://www.youtube.com/watch?v=zhl1VsVz_1I
+
+## Regex
+* Lecture: https://www.youtube.com/watch?v=uG50c2E5ctA
+
+## Promises
+* Lecture: https://www.youtube.com/watch?v=tWkhSw6csD8
+* Review: https://www.youtube.com/watch?v=BCB3BOR-JRs

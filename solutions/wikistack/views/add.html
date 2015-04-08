@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h3>{% if editing %}Edit Page{% else %}Add Page{% endif %}</h3>
+  <hr>
+
+  {% if editing %}
+    <form method="POST" action="/page/{{doc.id}}">
+      <input type="hidden" name="_method" value="PUT">
+  {% else %}
+    <form method="POST" action="add/submit">
+  {% endif %}
+    <div class="form-group">
+      <label for="">Page Title</label>
+      <input type="text" name="title" class="form-control" value="{{ doc.title }}">
+    </div>
+
+    <div class="form-group">
+      <label for="">Page Content</label>
+      <textarea name="text" rows="10" class="form-control">{{ doc.text }}</textarea>
+    </div>
+
+    {% if editing %}
+      <button class="btn btn-primary">Update</button>
+    {% else %}
+      <button class="btn btn-primary">Submit</button>
+    {% endif %}
+  </form>
+{% endblock %}

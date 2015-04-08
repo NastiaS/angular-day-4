@@ -46,12 +46,6 @@ module.exports = function(io){
             });
         });
 
-        // var tweets = tweetBank.find({ id: id, name: name });
-        // res.render('index', {
-        //     title: 'Twitter.js - Tweet by ' + name,
-        //     tweets: tweets,
-        //     showForm: true
-        // });
     });
 
     router.post('/submit', function(req, res) {
@@ -59,14 +53,15 @@ module.exports = function(io){
         var text = req.body.text;
         user.create({name: name}).then(function(newUser){
             tweet.create({tweet: text, UserId: newUser.id}).then(function(newTweet){
+                //cleaner way to do this?
                 var tweetArray = [];
                 tweetArray.push(newTweet.get('tweet'));
+
                 console.log(tweetArray);
                 io.sockets.emit('new_tweet', { name: newUser.get('name'), text: tweetArray});
                 res.redirect('/');
             });
         });
-        // tweetBank.add(name, text);
         
     });
         return router;

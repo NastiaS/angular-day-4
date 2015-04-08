@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h3>{{ page.title }}</h3>
+
+  <div class="page-body">{{ page.text | marked }}</div>
+
+  <a href="/page/{{page.id}}/edit"><button class="btn btn-primary" >Edit</button></a>
+  <form method="POST" action="/page/{{page.id}}/delete"><input type="submit" class="btn btn-danger" value="Delete"></input></form>
+
+  {% for tag in page.tags %}
+    <a href="/page/tags/{{ tag }}">{{ tag }}</a> |
+  {% endfor %}
+{% endblock %}

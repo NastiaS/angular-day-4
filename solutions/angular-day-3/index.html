@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Flash Cards</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <script src="js/lib/angular.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/controllers/MainController.js"></script>
+        <script src="js/controllers/StatsController.js"></script>
+        <script src="js/controllers/NewCardController.js"></script>
+        <script src="js/factories/FlashCardsFactory.js"></script>
+        <script src="js/factories/ScoreFactory.js"></script>
+        <script src="js/directives/loader/loader.js"></script>
+        <script src="js/directives/flash-card/flash-card.js"></script>
+        <script src="js/directives/border-on-hover.js"></script>
+        <script src="js/filters/cheat-filter.js"></script>
+    </head>
+
+    <body ng-app="FlashCards">
+
+        <div ng-include="'templates/stats.html'">
+        </div>
+
+        <div ng-controller="NewCardController">
+            <form name="newCardForm" ng-submit="newCardForm.$valid && submitNewCard(newCard)">
+
+                <p ng-show="newCardForm.question.$touched && newCardForm.question.$error.required">Question is a required field</p>
+                <p ng-show="newCardForm.question.$touched && newCardForm.question.$error.minlength">Question is too short</p>
+                <input name="question" ng-minlength="15" required ng-model="newCard.question"></br>
+
+                <p ng-show="newCardForm.category.$touched && newCardForm.category.$error.required">Category is a required field</p>
+                <select name="category" required ng-model="newCard.category">
+                    <option ng-repeat="category in categories">{{category}}</option>
+                </select></br>
+
+                <div ng-repeat="answer in newCard.answers">
+                    <p ng-show= "newCardForm.answer{{$index}}.$touched && newCardForm.answer{{$index}}.$error.maxlength">Answer is too long</p>
+                    <input name= "answer{{$index}}" type="text" ng-model="answer.text"  ng-maxlength="40">
+                    <input type="checkbox" ng-model="answer.correct">
+                </div>
+
+                <button>Submit a new card!</button>
+            </form>       
+        </div>
+
+        <div ng-controller="MainController">
+
+            <loader ng-show="cardsLoading"></loader>
+
+            <div ng-hide="cardsLoading">
+
+                <button
+                        class="category-button"
+                        ng-click="getAllCards()"
+                        ng-class="{ active: chosenCategory === 'All' }">
+                    All Categories
+                </button>
+
+                <button
+                        class="category-button"
+                        ng-repeat="category in categories"
+                        ng-click="getCategoryCards(category)"
+                        ng-class="{ active: chosenCategory === category }">
+                    {{ category }}
+                </button>
+
+                <flash-card card="entry" ng-repeat="entry in flashCards"></flash-card>
+
+            </div>
+
+        </div>
+
+    </body>
+
+</html>

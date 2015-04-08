@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>{{title}}</h1>
+    <ul>
+      {% for page in pages %}
+        <!-- filtering each page by the page_link filter registered in our
+        filters module (using swig.setFilter). -->
+        <li>{{ page | page_link }}</li>
+      {% endfor %}
+    </ul>
+{% endblock %}
