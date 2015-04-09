@@ -13,22 +13,31 @@
 }
 
 html,body {
-  font-family: Helvetica;
+  font-family:'Pacifico', cursive;
   text-align: center;
+  background: #F0F0F0;
 }
 
 form {
   margin: 50px;
 }
 
+.navbar {
+  background:url("../images/cool.jpg") no-repeat;
+  background-size: cover;
+}
+
 .border-on-hover {
-  border: 5px solid red !important;
+  border: 5px solid black !important;
+
 }
 
 .category-button {
   border: 1px solid black;
   background:none;
+  border-radius: 35%;
   padding: 20px;
+  width: 30%;
   margin-right: 15px;
   cursor: pointer;
   outline: none;
@@ -37,8 +46,15 @@ form {
   }
 }
 
-.flash-card {
+.category-button:hover {
+  transform: rotate(180deg);
+  background-color: #d8d8d8;
+}
 
+.flash-card {
+  background:url("../images/abstract_vintage.jpg") no-repeat;
+  background-size: cover;
+  opacity: 0.85;
   position: relative;
   width: 60%;
   height: 400px;
@@ -48,18 +64,28 @@ form {
   padding: 50px;
   box-shadow: 3px 4px 5px 1px rgb(107, 107, 107);
 
+  .lookAtHim{
+    width:20%;
+    float:left;
+    margin-bottom: 10px;
+  }
+
   h1 {
     font-size: 40px;
-    text-align: center;
+    text-align: right;
     margin-bottom: 40px;
+     text-shadow: 1px 1px 0 black;
+     color: black;
+                
   }
 
   h3 {
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 12px;
+    font-size: 18px;
     color: #bababa;
+    color: black;
   }
 
   .flash-card-answers {
@@ -72,6 +98,8 @@ form {
   .flash-card-answer {
     min-height: 100px;
     text-align: center;
+    color: black;
+    font-size: 18px;
     border: 1px solid black;
     padding: 20px;
     float: left;
@@ -82,7 +110,16 @@ form {
     &:last-child {
       margin-right: 0;
     }
+    
+   -webkit-transition: width 2s; 
+    transition: width 2s;
+
+
+
   }
+  .flash-card-answer:hover {
+    -webkit-transform: rotateZ(5deg);
+}
 
 }
 
@@ -126,3 +163,4 @@ form {
   }
 
 }
+

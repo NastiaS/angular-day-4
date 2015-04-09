@@ -2,26 +2,40 @@
   box-sizing: border-box; }
 
 html, body {
-  font-family: Helvetica;
-  text-align: center; }
+  font-family: 'Pacifico', cursive;
+  text-align: center;
+  background: #F0F0F0; }
 
 form {
   margin: 50px; }
 
+.navbar {
+  background: url("../images/cool.jpg") no-repeat;
+  background-size: cover; }
+
 .border-on-hover {
-  border: 5px solid red !important; }
+  border: 5px solid black !important; }
 
 .category-button {
   border: 1px solid black;
   background: none;
+  border-radius: 35%;
   padding: 20px;
+  width: 30%;
   margin-right: 15px;
   cursor: pointer;
   outline: none; }
   .category-button.active {
     background: gainsboro; }
 
+.category-button:hover {
+  transform: rotate(180deg);
+  background-color: #d8d8d8; }
+
 .flash-card {
+  background: url("../images/abstract_vintage.jpg") no-repeat;
+  background-size: cover;
+  opacity: 0.85;
   position: relative;
   width: 60%;
   height: 400px;
@@ -30,16 +44,23 @@ form {
   border: 1px solid black;
   padding: 50px;
   box-shadow: 3px 4px 5px 1px #6b6b6b; }
+  .flash-card .lookAtHim {
+    width: 20%;
+    float: left;
+    margin-bottom: 10px; }
   .flash-card h1 {
     font-size: 40px;
-    text-align: center;
-    margin-bottom: 40px; }
+    text-align: right;
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 0 black;
+    color: black; }
   .flash-card h3 {
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 12px;
-    color: #bababa; }
+    font-size: 18px;
+    color: #bababa;
+    color: black; }
   .flash-card .flash-card-answers {
     width: 100%;
     margin: 0 auto;
@@ -54,15 +75,21 @@ form {
   .flash-card .flash-card-answer {
     min-height: 100px;
     text-align: center;
+    color: black;
+    font-size: 18px;
     border: 1px solid black;
     padding: 20px;
     float: left;
     width: 32%;
     margin-right: 2%;
     cursor: pointer;
-    line-height: 1.3em; }
+    line-height: 1.3em;
+    -webkit-transition: width 2s;
+    transition: width 2s; }
     .flash-card .flash-card-answer:last-child {
       margin-right: 0; }
+  .flash-card .flash-card-answer:hover {
+    -webkit-transform: rotateZ(5deg); }
 
 .answer-feedback {
   text-align: center;
@@ -92,3 +119,5 @@ form {
         margin-right: 0; }
       #statistics #scoreboard h3 span {
         font-weight: bold; }
+
+/*# sourceMappingURL=style.css.map */
